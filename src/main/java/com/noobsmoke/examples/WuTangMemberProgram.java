@@ -7,6 +7,7 @@ public class WuTangMemberProgram {
     private String[] members;
     private int memberSize;
     private Scanner input;
+    public String album = "36 Chambers";
 
     private boolean isFull() {
         return memberSize >= members.length;
@@ -46,4 +47,8 @@ public class WuTangMemberProgram {
         }
         System.out.println(memberName + " Could Not Be Found!");
     }
+
+
+
+
 }
