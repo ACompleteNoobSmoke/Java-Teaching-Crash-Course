@@ -30,6 +30,7 @@ public class VideoGameBox {
    }
 
    public void createBox() {
+       if (this.title == null) return;
        System.out.println("Box for " + this.title + " Has been created on " + LocalDateTime.now());
    }
 

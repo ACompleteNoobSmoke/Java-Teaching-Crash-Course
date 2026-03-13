@@ -6,8 +6,6 @@ public class WuTangMemberProgram {
 
     private String[] members;
     private int memberSize;
-    private Scanner input;
-    public String album = "36 Chambers";
 
     private boolean isFull() {
         return memberSize >= members.length;
@@ -20,10 +18,9 @@ public class WuTangMemberProgram {
     public WuTangMemberProgram() {
         this.members = new String[2];
         this.memberSize = 0;
-        this.input = new Scanner(System.in);
     }
 
-
+    // Helper Methods -- Start //
     private void resize() {
         String[] newMembers = new String[memberSize + 1];
         for (int index = 0; index < memberSize; index++)
@@ -31,20 +28,57 @@ public class WuTangMemberProgram {
         members = newMembers;
     }
 
-    private void addNewMember(String newMember) {
+    private void shiftArray() {
+        if (isEmpty()) return;
+        if (memberSize == 1) members = new String[2];
+        String[] reshiftMembers = new String[memberSize - 1];
+        int shiftIndex = 0;
+        for (int i = 0; i < memberSize; i++) {
+            if (members[i] == null) continue;
+            reshiftMembers[shiftIndex++] = members[i];
+        }
+    }
+
+    // Helper Methods -- End //
+
+    public void addNewMember(String newMember) {
         if (isFull()) resize();
         members[++memberSize] = newMember;
         System.out.println(newMember + " Was Added To Group");
     }
 
-    private void searchMember(String memberName) {
-        if (isEmpty()) System.out.println("Member List Is Currently Empty!");
+    public void searchMember(String memberName) {
+        if (isEmpty()) {
+            System.out.println("Member List Is Currently Empty!");
+            return;
+        }
         for (int i = 0; i < memberSize; i++) {
             if (members[i].equalsIgnoreCase(memberName)) {
                 System.out.println(memberName + " Is A Member");
                 return;
             }
         }
+        System.out.println(memberName + " Could Not Be Found!");
+    }
+
+
+    public void removeMember(String memberName) {
+        if (isEmpty()) {
+            System.out.println("Member List Is Currently Empty!");
+            return;
+        }
+        for (int i = 0; i < memberSize; i++) {
+            if (members[i].equalsIgnoreCase(memberName)) {
+                members[i] = null;
+                shiftArray();
+                System.out.println("Removing " + memberName + " From Wu-Tang Clan");
+                System.out.println("Protect Ya Neck Kid!!");
+                System.out.println();
+                memberSize--;
+                return;
+            }
+        }
+
         System.out.println(memberName + " Could Not Be Found!");
     }
 
