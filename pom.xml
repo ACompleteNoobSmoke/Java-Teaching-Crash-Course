@@ -35,7 +35,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.11</version>
+                <version>0.8.13</version>
                 <executions>
                     <execution>
                         <goals>
@@ -43,7 +43,7 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>generate-code-coverage-report</id>
+                        <id>report</id>
                         <phase>test</phase>
                         <goals>
                             <goal>report</goal>
@@ -51,7 +51,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
