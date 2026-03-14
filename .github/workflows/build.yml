@@ -1,6 +1,6 @@
 name: Build Workflow
 
-run-name: Build Workflow - ${{github.head_ref || github.base_ref}}
+run-name: 'Build Workflow -- ${{ github.head_ref || github.ref_name }}'
 
 on:
   push:
@@ -34,8 +34,8 @@ jobs:
           paths: |
             ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
           token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 60 # Set your desired minimum coverage %
-          min-coverage-changed-files: 80 # Optional: Higher threshold for new code
+          min-coverage-overall: 100 # Set your desired minimum coverage %
+          min-coverage-changed-files: 100 # Optional: Higher threshold for new code
 
 
 
