@@ -20,7 +20,7 @@ jobs:
           distribution: "zulu"
 
       - name: Build Code
-        run: mvn clean install
+        run: mvn clean verify org.jacoco:jacoco-maven-plugin:report
 
       - name: Upload Coverage
         uses: actions/upload-artifact@v5
