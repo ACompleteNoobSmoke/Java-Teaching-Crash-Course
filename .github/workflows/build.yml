@@ -1,6 +1,6 @@
 name: Build Workflow
 
-run-name: Build Workflow - ${{github.head_ref}}
+run-name: Build Workflow - ${{github.head_ref || github.base_ref}}
 
 on:
   push:
@@ -22,16 +22,11 @@ jobs:
       - name: Build Code
         run: mvn clean install
 
-      - name: Print
-        run : |
-          ls target/site
-          ls target/site/jacoco
-
       - name: Upload Coverage
         uses: actions/upload-artifact@v5
         with:
           name: jacoco-report
-          path: target/site/jacoco.xml
+          path: target/site/jacoco/jacoco.xml
 
       - name: Enforce coverage threshold and add PR comment
         uses: madrapps/jacoco-report@v1.7.2 # Example action, others available
