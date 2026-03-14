@@ -13,26 +13,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v5
 
-      - name: Upload Coverage
-        uses: actions/upload-artifact@v5
-        with:
-          name: jacoco-report
-          path: target/site/jacoco/jacoco.xml
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Setup Java
         uses: actions/setup-java@v5
         with:
           java-version: "25"
           distribution: "zulu"
 
-      - name: Build Code
-        run: mvn clean install
+      - name: Build
+        run:  mvn clean install
 
-      - name: Run tests
-        run: npx jest --coverage
+      - name: Upload Coverage
+        uses: actions/upload-artifact@v5
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/jacoco.xml
 
       - name: Enforce coverage threshold and add PR comment
         uses: madrapps/jacoco-report@v1.7.2 # Example action, others available
@@ -47,6 +41,8 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: target/site/jacoco/jacoco.xml # Adjust path as necessary
+          flags: unittests
 
 
 
