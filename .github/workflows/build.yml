@@ -22,11 +22,20 @@ jobs:
       - name: Build Code
         run: mvn clean install
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+
       - name: Upload Coverage
         uses: actions/upload-artifact@v5
         with:
           name: jacoco-report
           path: target/site/jacoco/jacoco.xml
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npx jest --coverage
 
       - name: Enforce coverage threshold and add PR comment
         uses: madrapps/jacoco-report@v1.7.2 # Example action, others available
