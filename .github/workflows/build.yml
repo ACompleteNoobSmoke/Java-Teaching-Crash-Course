@@ -23,7 +23,9 @@ jobs:
         run: mvn clean install
 
       - name: Print
-        run : cat target/site/jacoco.xml
+        run : |
+          ls target/site
+          ls target/site/jacoco
 
       - name: Upload Coverage
         uses: actions/upload-artifact@v5
