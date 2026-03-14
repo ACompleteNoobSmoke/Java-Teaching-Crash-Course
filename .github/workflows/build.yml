@@ -9,34 +9,33 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
 
-  steps:
-    - name: Checkout Code
-      uses: actions/checkout@v5
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: "25"
+          distribution: "zulu"
 
-    - name: Setup Java
-      uses: actions/setup-java@v5
-      with:
-        java-version: "25"
-        distribution: "zulu"
+      - name: Build Code
+        run: mvn clean install
 
-    - name: Build Code
-      run: mvn clean install
+      - name: Upload Coverage
+        uses: actions/upload-artifact@v5
+        with:
+          name: jacoco-report
+          path: target/site/jacoco.xml
 
-    - name: Upload Coverage
-      uses: actions/upload-artifact@v5
-      with:
-        name: jacoco-report
-        path: target/site/jacoco.xml
-
-    - name: Enforce coverage threshold and add PR comment
-      uses: madrapps/jacoco-report@v1.7.2 # Example action, others available
-      with:
-        paths: |
-          ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
-        token: ${{ secrets.GITHUB_TOKEN }}
-        min-coverage-overall: 60 # Set your desired minimum coverage %
-        min-coverage-changed-files: 80 # Optional: Higher threshold for new code
+      - name: Enforce coverage threshold and add PR comment
+        uses: madrapps/jacoco-report@v1.7.2 # Example action, others available
+        with:
+          paths: |
+            ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 60 # Set your desired minimum coverage %
+          min-coverage-changed-files: 80 # Optional: Higher threshold for new code
 
 
 
