@@ -37,6 +37,11 @@ jobs:
           min-coverage-overall: 100 # Set your desired minimum coverage %
           min-coverage-changed-files: 100 # Optional: Higher threshold for new code
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
 
 
 
