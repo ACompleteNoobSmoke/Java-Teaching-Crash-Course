@@ -33,31 +33,31 @@ public class WuTangClanProgramAdvancedTest {
                 () -> underTest.addMember(memberName));
         assertEquals(memberName+ " already exists in clan", ex.getMessage());
     }
-//
-//    @ParameterizedTest
-//    @ValueSource(strings = {"null", " "})
-//    public void cannotAddInvalidName(String memberName) {
-//        // Converting the string "null" to an actual null reference
-//        String finalName = memberName.equalsIgnoreCase("null") ? null : memberName;
-//        Exception exception = assertThrows(IllegalArgumentException.class, () -> underTest.addMember(finalName));
-//        assertEquals("Please enter a valid member name", exception.getMessage());
-//    }
-//
-//    @Test
-//    public void hasMemberTrue() {
-//        underTest.addMember("RZA");
-//        underTest.addMember("GZA");
-//        underTest.addMember("Inspectah Deck");
-//        String memberName = "gza";
-//        assertTrue(underTest.hasMember(memberName));
-//    }
-//
-//    @Test
-//    public void hasMemberFalse() {
-//        underTest.addMember("RZA");
-//        underTest.addMember("GZA");
-//        underTest.addMember("Inspectah Deck");
-//        String memberName = "Ghostface Killah";
-//        assertFalse(underTest.hasMember(memberName));
-//    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"null", " "})
+    public void cannotAddInvalidName(String memberName) {
+        // Converting the string "null" to an actual null reference
+        String finalName = memberName.equalsIgnoreCase("null") ? null : memberName;
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> underTest.addMember(finalName));
+        assertEquals("Please enter a valid member name", exception.getMessage());
+    }
+
+    @Test
+    public void hasMemberTrue() {
+        underTest.addMember("RZA");
+        underTest.addMember("GZA");
+        underTest.addMember("Inspectah Deck");
+        String memberName = "gza";
+        assertTrue(underTest.hasMember(memberName));
+    }
+
+    @Test
+    public void hasMemberFalse() {
+        underTest.addMember("RZA");
+        underTest.addMember("GZA");
+        underTest.addMember("Inspectah Deck");
+        String memberName = "Ghostface Killah";
+        assertFalse(underTest.hasMember(memberName));
+    }
 }
