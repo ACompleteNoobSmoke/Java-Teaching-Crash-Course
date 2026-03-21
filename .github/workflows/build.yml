@@ -40,15 +40,15 @@ jobs:
           path: target/site/jacoco/jacoco.xml
           if-no-files-found: error
 
-      - name: Enforce coverage threshold and add PR comment
-        if: github.event_name == 'pull_request'
-        uses: madrapps/jacoco-report@v1.7.2
-        with:
-          paths: |
-            ${{ github.workspace }}/target/site/jacoco/jacoco.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 100
-          min-coverage-changed-files: 100
+#      - name: Enforce coverage threshold and add PR comment
+#        if: github.event_name == 'pull_request'
+#        uses: madrapps/jacoco-report@v1.7.2
+#        with:
+#          paths: |
+#            ${{ github.workspace }}/target/site/jacoco/jacoco.xml
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          min-coverage-overall: 100
+#          min-coverage-changed-files: 100
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5

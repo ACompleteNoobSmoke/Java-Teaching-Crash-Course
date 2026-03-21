@@ -11,28 +11,28 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WuTangClanProgramAdvancedTest {
 
 
-//    private WuTangClanProgramAdvanced underTest;
-//
-//    @BeforeEach
-//    public void setUp() {
-//        underTest = new WuTangClanProgramAdvanced();
-//    }
-//
-//    @Test
-//    public void canAddMember() {
-//
-//        underTest.addMember("RZA");
-//        assertTrue(underTest.hasMember("RZA"));
-//    }
-//
-//    @Test
-//    public void cannotAddDuplicate() {
-//        String memberName = "RZA";
-//        underTest.addMember(memberName);
-//        Exception ex = assertThrows(IllegalStateException.class,
-//                () -> underTest.addMember(memberName));
-//        assertEquals(memberName+ " already exists in clan", ex.getMessage());
-//    }
+    private WuTangClanProgramAdvanced underTest;
+
+    @BeforeEach
+    public void setUp() {
+        underTest = new WuTangClanProgramAdvanced();
+    }
+
+    @Test
+    public void canAddMember() {
+
+        underTest.addMember("RZA");
+        assertTrue(underTest.hasMember("RZA"));
+    }
+
+    @Test
+    public void cannotAddDuplicate() {
+        String memberName = "RZA";
+        underTest.addMember(memberName);
+        Exception ex = assertThrows(IllegalStateException.class,
+                () -> underTest.addMember(memberName));
+        assertEquals(memberName+ " already exists in clan", ex.getMessage());
+    }
 //
 //    @ParameterizedTest
 //    @ValueSource(strings = {"null", " "})
