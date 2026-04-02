@@ -6,5 +6,5 @@ public interface ElectronicFunctionality {
     void off();
     void standby();
     void restart();
-    void printElectronic(String electronicName);
+    void printElectronic();
 }
