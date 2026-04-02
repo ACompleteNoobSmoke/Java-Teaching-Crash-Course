@@ -1,6 +1,6 @@
 package com.noobsmoke;
 
-import com.noobsmoke.examples.VideoGameBox;
+
 
 
 public class Main {
